@@ -16,9 +16,35 @@ export class AuthController {
   async signup(@Body() dto: SignUpDto, @Res({ passthrough: true }) response: Response) { const result = await this.auth.signup(dto); this.setCookie(response, result.token); return result.user; }
   @Post('login') @HttpCode(HttpStatus.OK) @ApiOperation({ summary: 'Sign in securely' })
   async login(@Body() dto: LoginDto, @Res({ passthrough: true }) response: Response) { const result = await this.auth.login(dto); this.setCookie(response, result.token); return result.user; }
-  @Post('logout') @HttpCode(HttpStatus.OK) @ApiOperation({ summary: 'Clear the current session' })
-  logout(@Res({ passthrough: true }) response: Response) { response.clearCookie('tempo_session', { path: '/' }); return { message: 'Signed out' }; }
-  @Get('me') @UseGuards(JwtAuthGuard) @ApiCookieAuth('session-cookie') @ApiOperation({ summary: 'Get the authenticated user' })
-  me(@CurrentUser() user: AuthUser) { return this.auth.profile(user.id); }
-  private setCookie(response: Response, token: string) { response.cookie('tempo_session', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', path: '/', maxAge: 7 * 24 * 60 * 60 * 1000 }); }
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Clear the current session' })
+  logout(@Res({ passthrough: true }) response: Response) {
+    const isProd = process.env.NODE_ENV === 'production';
+    response.clearCookie('tempo_session', {
+      path: '/',
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
+    });
+    return { message: 'Signed out' };
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth('session-cookie')
+  @ApiOperation({ summary: 'Get the authenticated user' })
+  me(@CurrentUser() user: AuthUser) {
+    return this.auth.profile(user.id);
+  }
+
+  private setCookie(response: Response, token: string) {
+    const isProd = process.env.NODE_ENV === 'production';
+    response.cookie('tempo_session', token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+  }
 }
