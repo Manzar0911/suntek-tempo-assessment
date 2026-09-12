@@ -4,18 +4,49 @@ Tempo is a full-stack productivity workspace for managing tasks, tracking focuse
 
 ---
 
-## 🚀 Review Links & Credentials
+## 🚀 Live Deployment & Review Links
 
-| Resource | Location / Details |
+| Resource | URL / Details |
 | --- | --- |
-| **Frontend (Local)** | <http://localhost:5173> |
-| **REST API (Local)** | <http://localhost:3000/api/v1> |
-| **Swagger OpenAPI Docs** | <http://localhost:3000/docs> |
+| **Live Frontend App** | [https://suntek-tempo-assessment.onrender.com](https://suntek-tempo-assessment.onrender.com) |
+| **Live REST API** | [https://tempo-api-r7fo.onrender.com/api/v1](https://tempo-api-r7fo.onrender.com/api/v1) |
+| **Live Swagger OpenAPI Docs** | [https://tempo-api-r7fo.onrender.com/docs](https://tempo-api-r7fo.onrender.com/docs) |
 | **Database Provider** | **PostgreSQL (Aiven Cloud Managed)** |
 | **Demo Reviewer Email** | `reviewer@tempo.app` |
 | **Demo Reviewer Password** | `Review123!` |
 
-> 💡 **Demo Account:** The database is pre-seeded with rich sample data for `reviewer@tempo.app` (14 tasks across backlog, in-progress, and completed states, 16 historical time logs over 7 days, and an active live timer) to showcase the productivity dashboards, charts, and notification centers.
+> 💡 **Demo Account:** The production database is pre-seeded with rich sample data for `reviewer@tempo.app` (14 realistic tasks across backlog, in-progress, and completed states, 16 historical time logs over 7 days, and an active live timer) to immediately explore all productivity dashboards, circadian heatmaps, and notification centers.
+
+---
+
+## 📸 Application Preview & Visual Tour
+
+### 1. Workspace, Active Focus Timers & Smart Task Management
+| Task Dashboard & Live Ticker | Natural Language Task Creation & Refinement |
+| :---: | :---: |
+| ![Workspace Dashboard](./docs/screenshots/workspace-tasks.png) | ![Create Task Modal](./docs/screenshots/create-task-page.png) |
+
+### 2. Deep Productivity Analytics & Visualizations
+| Productivity Scorecard & Daily Summary | 7-Day Trend Chart & Focus Target Progress |
+| :---: | :---: |
+| ![Productivity Scorecard](./docs/screenshots/productivity-insights-1.png) | ![7-Day Analytics Trend](./docs/screenshots/productivity-insights-2.png) |
+| **Circadian Rhythm Heatmap (24h Density)** | **Priority Breakdown & Focus Distribution** |
+| ![Circadian Rhythm Heatmap](./docs/screenshots/productivity-insights-3.png) | ![Priority Breakdown](./docs/screenshots/productivity-insights-4.png) |
+| **Peak Focus Analysis & Hourly Breakdown** | **Task Pipeline Velocity & Completion Ratio** |
+| ![Circadian Focus Grid](./docs/screenshots/productivity-insights-5.png) | ![Weekly Analytics Breakdown](./docs/screenshots/productivity-insights-6.png) |
+
+### 3. Time Logs & Session History Reconciliation
+![Time Logs History](./docs/screenshots/time-logs.png)
+
+### 4. Authentication & Security Flow
+| Secure Sign In | Account Registration |
+| :---: | :---: |
+| ![Login Screen](./docs/screenshots/login-page.png) | ![Signup Screen](./docs/screenshots/signup-page.png) |
+
+### 5. Mobile-First Responsive Experience
+| Tasks & Active Timer | Task Creation | Insights & Heatmap | Time Log History |
+| :---: | :---: | :---: | :---: |
+| ![Mobile Task View](./docs/screenshots/mobile-task-page.png) | ![Mobile Create Task](./docs/screenshots/mobile-create-task-page.png) | ![Mobile Insights 1](./docs/screenshots/mobile-insight-page-1.png)<br>![Mobile Insights 2](./docs/screenshots/mobile-insight-page-2.png) | ![Mobile Logs](./docs/screenshots/mobile-logs.png) |
 
 ---
 
