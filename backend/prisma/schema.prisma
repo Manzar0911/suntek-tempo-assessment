@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(cuid())
+  name         String
+  email        String       @unique
+  passwordHash String
+  tasks        Task[]
+  timeLogs     TimeLog[]
+  activeTimer  ActiveTimer?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Task {
+  id                   String        @id @default(cuid())
+  userId               String
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rawInput             String?
+  title                String
+  description          String?
+  status               String        @default("PENDING")
+  priority             String        @default("MEDIUM")
+  totalDurationSeconds Int           @default(0)
+  completedAt          DateTime?
+  dueAt                DateTime?
+  reminderAt           DateTime?
+  timeLogs             TimeLog[]
+  activeTimers         ActiveTimer[]
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  @@index([userId, status])
+  @@index([userId, createdAt])
+  @@index([userId, reminderAt])
+}
+
+model TimeLog {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskId          String
+  task            Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  startedAt       DateTime
+  endedAt         DateTime
+  durationSeconds Int
+  note            String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId, startedAt])
+  @@index([taskId, startedAt])
+}
+
+model ActiveTimer {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  startedAt DateTime @default(now())
+  note      String?
+
+  @@index([taskId])
+}

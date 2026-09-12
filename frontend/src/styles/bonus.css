@@ -1,0 +1,1170 @@
+.header-actions { display: flex; align-items: center; gap: 10px; position: relative; }
+.reminder-center-container { position: relative; }
+.reminder-button { position: relative; width: 46px; height: 46px; display: grid; place-items: center; color: #716d63; background: rgba(255,253,248,.82); border: 1px solid #dcd5c5; border-radius: 10px; transition: color var(--fast), border var(--fast), background var(--fast), box-shadow var(--fast); }
+.reminder-button:hover, .reminder-button.enabled, .reminder-button.active-open { color: #8e681f; border-color: #c9ae6a; background: #fffaf0; }
+.reminder-button.active-open { box-shadow: 0 0 0 3px rgba(201,174,106,.25); }
+.reminder-button span.reminder-badge { position: absolute; top: -6px; right: -6px; min-width: 19px; height: 19px; display: grid; place-items: center; padding: 0 5px; color: #17140e; background: #dfbd6c; border: 2px solid var(--paper); border-radius: 99px; font-size: 9px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+
+/* Reminder / Notification Popover Drawer */
+.reminder-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  width: min(390px, 92vw);
+  max-height: 520px;
+  display: flex;
+  flex-direction: column;
+  background: #fffdf9;
+  border: 1px solid #dfd9cc;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(26,23,17,.16), 0 4px 16px rgba(0,0,0,.06);
+  backdrop-filter: blur(12px);
+  animation: popoverSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes popoverSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reminder-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 12px;
+  background: #faf8f2;
+  border-bottom: 1px solid #ebe5d8;
+}
+
+.reminder-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reminder-header-title svg {
+  color: var(--gold);
+}
+
+.reminder-header-title h3 {
+  font-size: 14px;
+  font-weight: 650;
+  margin: 0;
+  color: var(--ink);
+}
+
+.reminder-header-title small {
+  display: block;
+  font-size: 10px;
+  color: #8c877a;
+}
+
+.browser-permission-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #f4eee2;
+  border-bottom: 1px solid #eae2d1;
+  font-size: 11px;
+}
+
+.permission-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #795d1f;
+  font-weight: 550;
+}
+
+.permission-action-btn {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: #25221b;
+  border-radius: 6px;
+  transition: background var(--fast);
+}
+
+.permission-action-btn:hover {
+  background: #413a2d;
+}
+
+/* Floating In-App Toast Banner */
+.in-app-toast-banner {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  width: min(420px, calc(100vw - 32px));
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  background: rgba(26, 24, 20, 0.96);
+  border: 1px solid #4a4435;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.35), 0 0 0 1px rgba(223,189,108,.2);
+  backdrop-filter: blur(14px);
+  animation: toastSlideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #f0d588;
+  background: #353024;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.toast-content {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.toast-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-top strong {
+  font-size: 13px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast-content p {
+  margin: 0;
+  color: #bbb6a8;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.toast-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a1710;
+  background: #e5c575;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: background var(--fast);
+}
+
+.toast-action-btn:hover {
+  background: #f5da92;
+}
+
+.toast-close-btn {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: #8c887c;
+  background: transparent;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: color var(--fast), background var(--fast);
+}
+
+.toast-close-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,.1);
+}
+
+@media (max-width: 760px) {
+  .in-app-toast-banner {
+    top: 14px;
+    right: 14px;
+    left: 14px;
+    width: auto;
+  }
+}
+
+.reminder-popover-body {
+  overflow-y: auto;
+  max-height: 380px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reminder-empty-state {
+  padding: 36px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  color: #8f8b80;
+}
+
+.reminder-empty-state svg {
+  color: #538e6f;
+  margin-bottom: 4px;
+}
+
+.reminder-empty-state strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.reminder-empty-state p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.reminder-sections {
+  display: grid;
+  gap: 14px;
+}
+
+.reminder-group {
+  display: grid;
+  gap: 7px;
+}
+
+.reminder-group-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.overdue-title { color: #b43834; }
+.due-today-title { color: #bc7924; }
+.reminder-title { color: #6f58af; }
+.in-progress-title { color: #8c6a1e; }
+
+.notification-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #faf8f3;
+  border: 1px solid #e7e2d6;
+  border-radius: 12px;
+  transition: background var(--fast), border-color var(--fast), transform var(--fast);
+}
+
+.notification-card:hover {
+  background: #fffefb;
+  border-color: #d8cebc;
+  transform: translateX(2px);
+}
+
+.notification-card.overdue-card {
+  background: #fef4f3;
+  border-color: #f7d0cc;
+}
+
+.notification-card-content {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.priority-tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.tag-urgent { color: #9f2a26; background: #fee4e2; }
+.tag-high { color: #9a5814; background: #fee8cc; }
+.tag-medium { color: #366099; background: #e2edfd; }
+.tag-low { color: #2e6949; background: #e0f2e8; }
+.tag-reminder { color: #583e9b; background: #ede8fc; }
+.tag-progress { color: #806019; background: #fef0cd; }
+
+.notification-time {
+  font-size: 10px;
+  color: #8c877b;
+}
+
+.notification-task-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notification-task-title:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.notification-action-btn {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #25221b;
+  border-radius: 9px;
+  flex-shrink: 0;
+  transition: background var(--fast), transform var(--fast);
+}
+
+.notification-action-btn:hover {
+  background: var(--gold);
+  transform: scale(1.05);
+}
+
+.reminder-popover-footer {
+  padding: 8px 16px;
+  background: #faf8f2;
+  border-top: 1px solid #ece7dc;
+  text-align: center;
+  font-size: 9px;
+  color: #9f9a8e;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.schedule-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 4px; }
+.schedule-fields label > span { display: flex; align-items: center; gap: 6px; }
+.schedule-help { margin: -9px 0 0; color: #8a867c; font-size: 10px; line-height: 1.5; }
+.task-schedule { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 -3px; }
+.task-schedule span { display: inline-flex; align-items: center; gap: 5px; padding: 5px 7px; color: #756d5c; background: #f5f0e4; border-radius: 6px; font-size: 9px; font-weight: 500; }
+.task-schedule span.overdue { color: #9b302d; background: #fff0ed; }
+.task-card.task-overdue { border-color: rgba(178,58,56,.3); }
+.insights-stack { display: grid; gap: 20px; }
+.weekly-panel { padding: 26px; }
+.weekly-content { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, .7fr); gap: 34px; }
+.weekly-chart { min-height: 260px; display: grid; grid-template-columns: repeat(7, 1fr); align-items: end; gap: clamp(8px, 2vw, 18px); padding: 22px 5px 0; border-bottom: 1px solid #ddd7c8; }
+.chart-day { min-width: 0; height: 220px; display: grid; grid-template-rows: 24px 1fr 25px; align-items: end; text-align: center; }
+.chart-value { overflow: hidden; color: #817b6e; font-size: 9px; white-space: nowrap; text-overflow: ellipsis; }
+.chart-track { height: 165px; display: flex; align-items: end; overflow: hidden; background: linear-gradient(to top, rgba(169,128,43,.08), transparent); border-radius: 7px 7px 0 0; }
+.chart-track > span { width: 100%; min-height: 3px; background: linear-gradient(180deg, #e2c273, #9b7225); border-radius: 7px 7px 1px 1px; box-shadow: 0 8px 22px rgba(155,114,37,.18); }
+.chart-day b { color: #6f6b61; font-size: 10px; font-weight: 500; }
+.weekly-insights { display: grid; align-content: center; gap: 0; margin: 0; }
+.weekly-insights div { padding: 14px 0; border-top: 1px solid #ebe6db; }
+.weekly-insights div:first-child { border-top: 0; }
+.weekly-insights dt { display: flex; align-items: center; gap: 7px; color: #898479; font-size: 10px; }
+.weekly-insights dt svg { color: #a27b2e; }
+.weekly-insights dd { margin: 5px 0 0 23px; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; }
+@media (max-width:760px) { .header-actions .add-button { display:none; } .schedule-fields { grid-template-columns:1fr; } .weekly-content { grid-template-columns:1fr; gap:18px; } .weekly-panel { padding:19px; } .weekly-chart { gap:6px; } .chart-value { display:none; } }
+
+/* ==========================================================================
+   Advanced Analytics & Visual Intelligence Charts
+   ========================================================================== */
+
+/* Layout Grid for Insights View */
+.insights-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 980px) {
+  .insights-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Priority Distribution Card */
+.priority-panel, .hourly-panel, .score-panel, .velocity-panel {
+  padding: 26px;
+}
+
+.priority-content {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.donut-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.donut-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg);
+}
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-center svg {
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+
+.donut-center strong {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.donut-center small {
+  color: var(--muted);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.priority-legend {
+  display: grid;
+  gap: 13px;
+}
+
+.priority-legend-item {
+  display: grid;
+  gap: 5px;
+}
+
+.legend-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.legend-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-time {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.legend-track {
+  height: 7px;
+  background: #ece8dc;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.legend-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+.legend-tasks {
+  color: #928e83;
+  font-size: 10px;
+}
+
+.priority-callout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 10px 14px;
+  color: #72571b;
+  background: #fbf4e2;
+  border: 1px solid #ebd8a8;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.priority-callout svg {
+  flex-shrink: 0;
+  color: #a47a23;
+}
+
+/* Hourly Rhythm Card */
+.peak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  color: #8c3b1e;
+  background: #fef1ec;
+  border: 1px solid #f6cfc1;
+  border-radius: 99px;
+  font-size: 11px;
+}
+
+.peak-badge svg {
+  color: #d65026;
+}
+
+.rhythm-layout {
+  display: grid;
+  gap: 22px;
+}
+
+.spectrum-container {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: #fbf9f4;
+  border: 1px solid #ece7dc;
+  border-radius: 14px;
+}
+
+.spectrum-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.spectrum-title span {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.spectrum-title small {
+  color: #8f8b80;
+  font-size: 10px;
+}
+
+.spectrum-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 3px;
+  align-items: end;
+  height: 64px;
+  padding-top: 6px;
+}
+
+.spectrum-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.spectrum-column-track {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: end;
+  background: #ece8dc;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.spectrum-column-track span {
+  width: 100%;
+  border-radius: 3px;
+  transition: height 0.5s ease;
+}
+
+.spectrum-hour-label {
+  font-size: 8px;
+  color: #9c978b;
+  margin-top: 4px;
+}
+
+.periods-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.period-card {
+  padding: 14px;
+  background: #fdfcf9;
+  border: 1px solid #e7e2d6;
+  border-radius: 14px;
+  display: grid;
+  gap: 4px;
+  transition: transform var(--fast), box-shadow var(--fast);
+}
+
+.period-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(38,31,19,.06);
+}
+
+.period-card-peak {
+  border-color: #dcb865;
+  background: linear-gradient(180deg, #fffefb 0%, #faf3e2 100%);
+  box-shadow: 0 6px 20px rgba(183,152,80,.12);
+}
+
+.period-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.period-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+.period-top-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #8c6819;
+  background: #f3e5c0;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.period-name {
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.period-time {
+  font-size: 10px;
+  color: #8a8579;
+}
+
+.period-metric {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.period-metric strong {
+  font-size: 13px;
+}
+
+.period-metric span {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.period-track {
+  height: 5px;
+  background: #eeeae0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.period-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+
+/* Productivity & Flow Score Card */
+.score-content-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.score-gauge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px 12px;
+  background: #fcfbfa;
+  border: 1px solid #e7e2d6;
+  border-radius: 18px;
+}
+
+.gauge-circle-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-inner svg {
+  color: var(--gold);
+}
+
+.gauge-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 34px;
+  line-height: 1;
+  margin: 2px 0 0;
+  color: var(--ink);
+}
+
+.gauge-inner small {
+  color: #8c887e;
+  font-size: 10px;
+}
+
+.gauge-tagline {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.gauge-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gauge-tagline p {
+  color: #858074;
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.score-kpi-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.score-kpi-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: #fcfbf8;
+  border: 1px solid #eae5d9;
+  border-radius: 14px;
+  transition: transform var(--fast), box-shadow var(--fast);
+}
+
+.score-kpi-item:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 18px rgba(38,31,19,.05);
+}
+
+.kpi-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: #8e681f;
+  background: #f5eccf;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.kpi-info {
+  display: grid;
+  gap: 1px;
+}
+
+.kpi-info span {
+  font-size: 11px;
+  color: #797469;
+}
+
+.kpi-info strong {
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.kpi-info small {
+  font-size: 10px;
+  color: #928d81;
+}
+
+/* Task Velocity & Pipeline Card */
+.velocity-content {
+  display: grid;
+  gap: 20px;
+}
+
+.segmented-progress-track {
+  height: 14px;
+  display: flex;
+  background: #ece7dc;
+  border-radius: 99px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.08);
+}
+
+.segment {
+  height: 100%;
+  transition: width 0.6s ease;
+}
+
+.segment-completed {
+  background: linear-gradient(90deg, #447c5c, #60a980);
+}
+
+.segment-progress {
+  background: linear-gradient(90deg, #cf8d26, #e7af55);
+}
+
+.segment-pending {
+  background: linear-gradient(90deg, #888377, #aba598);
+}
+
+.status-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.status-kpi-card {
+  padding: 16px;
+  background: #fdfcf9;
+  border: 1px solid #e8e3d7;
+  border-radius: 14px;
+  display: grid;
+  gap: 5px;
+}
+
+.status-kpi-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #6e695e;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-completed { background: #447c5c; box-shadow: 0 0 6px rgba(68,124,92,.4); }
+.dot-progress { background: #cf8d26; box-shadow: 0 0 6px rgba(207,141,38,.4); }
+.dot-pending { background: #888377; }
+
+.status-kpi-card strong {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.status-kpi-card small {
+  color: #8c887d;
+  font-size: 10px;
+}
+
+.overdue-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  color: #92312d;
+  background: #fff0ee;
+  border: 1px solid #f6cfcb;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.overdue-alert-banner svg {
+  color: #c73e3a;
+  flex-shrink: 0;
+}
+
+@media (max-width: 760px) {
+  /* Layout and containers */
+  .insights-stack {
+    gap: 14px;
+  }
+  .insights-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .priority-panel, .hourly-panel, .score-panel, .velocity-panel, .weekly-panel, .focus-breakdown {
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+  .section-heading {
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .section-heading h2 {
+    font-size: 19px;
+  }
+
+  /* Weekly Focus Rhythm Chart on Mobile */
+  .weekly-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .weekly-chart {
+    min-height: 160px;
+    height: 160px;
+    padding: 10px 0 0;
+    gap: 4px;
+    border-bottom: 1px solid #ded8cb;
+  }
+  .chart-day {
+    height: 140px;
+    grid-template-rows: 18px 1fr 20px;
+  }
+  .chart-value {
+    font-size: 8px;
+    display: block;
+    color: #928d82;
+  }
+  .chart-track {
+    height: 96px;
+    border-radius: 5px 5px 0 0;
+  }
+  .chart-track > span {
+    border-radius: 5px 5px 0 0;
+  }
+  .chart-day b {
+    font-size: 9px;
+    margin-top: 2px;
+  }
+  .weekly-insights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .weekly-insights div {
+    padding: 10px 12px;
+    background: #fcfbfa;
+    border: 1px solid #e7e3d8;
+    border-radius: 12px;
+  }
+  .weekly-insights div:first-child {
+    border-top: 1px solid #e7e3d8;
+  }
+  .weekly-insights dt {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .weekly-insights dd {
+    margin: 4px 0 0;
+    font-size: 16px;
+  }
+
+  /* Productivity Score Card on Mobile */
+  .score-content-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .score-gauge-card {
+    padding: 14px 10px;
+    border-radius: 14px;
+  }
+  .gauge-circle-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+  .gauge-number {
+    font-size: 28px;
+  }
+  .score-kpi-stack {
+    gap: 8px;
+  }
+  .score-kpi-item {
+    padding: 10px 14px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+  .kpi-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+  .kpi-info span {
+    font-size: 10px;
+  }
+  .kpi-info strong {
+    font-size: 15px;
+  }
+  .kpi-info small {
+    font-size: 9px;
+  }
+
+  /* Priority Distribution Donut on Mobile */
+  .priority-content {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .donut-wrapper {
+    width: 130px;
+    height: 130px;
+  }
+  .donut-center strong {
+    font-size: 16px;
+  }
+  .donut-center small {
+    font-size: 8px;
+  }
+  .priority-legend {
+    gap: 10px;
+  }
+
+  /* Circadian Rhythm & Timeline on Mobile */
+  .rhythm-layout {
+    gap: 14px;
+  }
+  .peak-badge {
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+  .spectrum-container {
+    padding: 10px;
+    gap: 6px;
+  }
+  .spectrum-bar-grid {
+    height: 46px;
+    gap: 1.5px;
+  }
+  .spectrum-column-track {
+    height: 34px;
+  }
+  .spectrum-hour-label {
+    font-size: 7px;
+  }
+  .periods-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .period-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .period-name {
+    font-size: 11px;
+  }
+  .period-time {
+    font-size: 9px;
+  }
+  .period-metric strong {
+    font-size: 12px;
+  }
+
+  /* Task Velocity on Mobile */
+  .velocity-content {
+    gap: 14px;
+  }
+  .status-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .status-kpi-card {
+    padding: 10px 8px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .status-kpi-top {
+    justify-content: center;
+    font-size: 9px;
+    gap: 4px;
+  }
+  .status-kpi-card strong {
+    font-size: 20px;
+    margin: 2px 0;
+  }
+  .status-kpi-card small {
+    font-size: 8px;
+  }
+  .overdue-alert-banner {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .weekly-insights {
+    grid-template-columns: 1fr;
+  }
+  .periods-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

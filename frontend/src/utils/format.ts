@@ -1,0 +1,3 @@
+export function formatDuration(value: number, compact = false) { const seconds = Math.max(0, Math.floor(value)); const h = Math.floor(seconds / 3600); const m = Math.floor((seconds % 3600) / 60); const s = seconds % 60; return compact ? (h ? `${h}h ${m}m` : m ? `${m}m` : `${s}s`) : [h, m, s].map((part) => String(part).padStart(2, '0')).join(':'); }
+export function greeting() { const hour = new Date().getHours(); return hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'; }
+export const titleCase = (value: string) => value.toLowerCase().replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());

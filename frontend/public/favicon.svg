@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tempo">
+  <defs><linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#242116"/><stop offset="1" stop-color="#0d0c0a"/></linearGradient><linearGradient id="gold" x1="15" y1="12" x2="49" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#f3d98b"/><stop offset=".5" stop-color="#c7a34c"/><stop offset="1" stop-color="#8b6925"/></linearGradient></defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/><rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#d1b15c" stroke-opacity=".35"/>
+  <circle cx="32" cy="32" r="19" fill="none" stroke="url(#gold)" stroke-width="2.5"/><path d="M32 18v15l10 6" fill="none" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="3" fill="#ead17f"/><path d="M25 10h14" stroke="#d4b45c" stroke-width="3" stroke-linecap="round"/>
+</svg>

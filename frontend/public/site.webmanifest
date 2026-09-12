@@ -1,0 +1,10 @@
+{
+  "name": "Tempo — Make time visible",
+  "short_name": "Tempo",
+  "description": "A focused task and time-tracking workspace.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#12110e",
+  "theme_color": "#12110e",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
