@@ -2,11 +2,11 @@
 
 ## Overview
 
-Tempo is a React and NestJS task/time tracking application. It uses PostgreSQL through Prisma, supporting both cloud database instances (such as Aiven PostgreSQL) and local instances.
+Tempo is a React and NestJS task/time tracking application. It uses **PostgreSQL** (hosted on Aiven Cloud) through **Prisma ORM**, providing production-grade persistence, connection pooling, and cross-platform compatibility.
 
 ## Applications
 
-- `frontend/`: React/Vite client. Models define contracts, services isolate HTTP, controller hooks coordinate state, and views/components render the UI.
+- `frontend/`: React/Vite client. Models define contracts, services isolate HTTP, controller hooks coordinate state, and views/components render the UI with accessible charts and notifications.
 - `backend/`: NestJS REST API. Controllers manage HTTP, DTOs validate input, services contain business rules, repositories enforce scoped data access, and Prisma persists PostgreSQL records.
 
 ```text
@@ -36,15 +36,15 @@ erDiagram
   TASK ||--o{ ACTIVE_TIMER : tracks
 ```
 
-SQLite does not provide native enums, so task status and priority are stored as strings and validated using TypeScript enums plus `class-validator` DTOs. `ActiveTimer.userId` remains database-unique.
+`ActiveTimer.userId` is database-unique, preventing simultaneous active timers per user.
 
 Completed sessions become `TimeLog` rows. Timer deletion, log creation and task-total updates occur inside Prisma transactions. Editing or deleting a time log corrects its task aggregate in the same transaction.
 
-The local database lives at `backend/prisma/dev.db` and is excluded from Git. The migration and seed remain version controlled.
+Database migrations and seeds are version-controlled with Prisma and PostgreSQL.
 
-## Daily summary
+## Daily & Weekly Summary
 
-The browser supplies its timezone offset. The API converts local midnight boundaries to UTC, aggregates the selected day, includes a live timer, and returns status counts plus per-task duration totals.
+The browser supplies its timezone offset. The API converts local midnight boundaries to UTC, aggregates the selected day/week, includes live timer state, and returns status counts, focus duration totals, and circadian rhythm heatmaps.
 
 ## API response format
 
@@ -66,4 +66,4 @@ The browser supplies its timezone offset. The API converts local midnight bounda
 
 ## Deployment guidance
 
-SQLite is appropriate for local review and a single API instance. Production deployment must attach persistent storage for the database file. PostgreSQL is the intended upgrade when the application needs multiple replicas, higher write concurrency or managed backups.
+Because Tempo uses managed PostgreSQL (Aiven Cloud), the backend API is completely stateless and ready for deployment on platforms like Render, Railway, Fly.io, or AWS. The frontend builds to static assets for deployment on Vercel, Netlify, or Cloudflare Pages.
